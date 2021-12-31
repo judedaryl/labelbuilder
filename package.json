@@ -1,0 +1,49 @@
+{
+  "name": "@em/common",
+  "version": "0.0.0",
+  "description": "common components",
+  "author": "judedaryl",
+  "license": "MIT",
+  "repository": "judedaryl/@em/common",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "jimp": "^0.16.1",
+    "memorystream": "^0.3.1",
+    "pdfkit": "^0.13.0"
+  },
+  "scripts": {
+    "watch": "concurrently -k -p \"[{name}]\" \"yarn watch-ts\" \"yarn start\"",
+    "watch-ts": "tsc -w",
+    "build": "tsc",
+    "start": "nodemon dist/index.js",
+    "serve": "yarn start",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/memorystream": "^0.3.0",
+    "@types/pdfkit": "^0.12.3",
+    "babel-eslint": "^10.0.3",
+    "concurrently": "^6.5.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "gh-pages": "^2.2.0",
+    "nodemon": "^2.0.12",
+    "typescript": "^3.7.5"
+  },
+  "files": [
+    "dist"
+  ]
+}
